@@ -1,21 +1,31 @@
 package com.ismailkilic.quizapp.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Question {
-    private String category;
-    private String correctAnswer;
-    private String difficulty;
-    private ArrayList<String> incorrectAnswers;
-    private String question;
 
-    public Question(String category, String correctAnswer, String difficulty, ArrayList<String> incorrectAnswers, String question) {
-        this.category = category;
-        this.correctAnswer = correctAnswer;
-        this.difficulty = difficulty;
-        this.incorrectAnswers = incorrectAnswers;
-        this.question = question;
-    }
+    @SerializedName("category")
+    @Expose
+    private String category;
+    @SerializedName("type")
+    @Expose
+    private String type;
+    @SerializedName("difficulty")
+    @Expose
+    private String difficulty;
+    @SerializedName("question")
+    @Expose
+    private String question;
+    @SerializedName("correct_answer")
+    @Expose
+    private String correctAnswer;
+    @SerializedName("incorrect_answers")
+    @Expose
+    private ArrayList<String> incorrectAnswers = null;
 
     public String getCategory() {
         return category;
@@ -25,12 +35,12 @@ public class Question {
         this.category = category;
     }
 
-    public String getCorrectAnswer() {
-        return correctAnswer;
+    public String getType() {
+        return type;
     }
 
-    public void setCorrectAnswer(String correctAnswer) {
-        this.correctAnswer = correctAnswer;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getDifficulty() {
@@ -41,6 +51,22 @@ public class Question {
         this.difficulty = difficulty;
     }
 
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
     public ArrayList<String> getIncorrectAnswers() {
         return incorrectAnswers;
     }
@@ -49,11 +75,4 @@ public class Question {
         this.incorrectAnswers = incorrectAnswers;
     }
 
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
 }

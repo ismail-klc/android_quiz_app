@@ -61,6 +61,7 @@ public class QuestionActivity extends AppCompatActivity {
     private void handleNextQuestion(){
         StaticDatas.currentQuestion++;
         Intent intent;
+
         if (StaticDatas.currentQuestion - 1 < StaticDatas.numberOfQuestions){
             intent = new Intent(QuestionActivity.this, QuestionActivity.class);
         }
@@ -68,6 +69,7 @@ public class QuestionActivity extends AppCompatActivity {
             intent = new Intent(QuestionActivity.this, ResultActivity.class);
             StaticDatas.currentQuestion = 1;
         }
+
         startActivity(intent);
         finish();
     }
@@ -116,19 +118,5 @@ public class QuestionActivity extends AppCompatActivity {
         btnC = findViewById(R.id.btnC);
         btnD = findViewById(R.id.btnD);
         answers = new ArrayList<>();
-    }
-
-    private void shuffleArray(ArrayList<String> array)
-    {
-        Collections.shuffle(array);
-        Random rnd = new Random();
-        for (int i = array.size() - 1; i > 0; i--)
-        {
-            int index = rnd.nextInt(i + 1);
-
-            String tmp = array.get(index);
-            array.set(index, array.get(i));
-            array.set(i ,tmp);
-        }
     }
 }
