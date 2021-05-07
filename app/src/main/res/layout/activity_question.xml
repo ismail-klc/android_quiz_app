@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:paddingHorizontal="30dp"
+    android:paddingVertical="10dp"
+    android:layout_width="match_parent"
+    android:background="@drawable/background"
+    android:layout_height="match_parent"
+    tools:context=".views.QuestionActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center_vertical|center"
+        android:layout_height="150dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="3/4"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="16dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="Questions"
+                />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:indeterminateOnly="false"
+            android:progressDrawable="@drawable/circle_progress"
+            android:progress="100"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="10"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="16dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="Points"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtQuestion"
+        android:layout_width="match_parent"
+        android:textColor="@android:color/black"
+        android:text="Question"
+        android:padding="15dp"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:background="@android:color/white"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnA"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:textAllCaps="false"
+        android:paddingStart="10dp"
+        android:paddingEnd="40dp"
+        android:textSize="20dp"
+        android:drawableLeft="@drawable/ic_grade_black_24dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_background"
+        android:text="Scores" />
+
+    <Button
+        android:id="@+id/btnB"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:textAllCaps="false"
+        android:paddingStart="10dp"
+        android:paddingEnd="40dp"
+        android:textSize="20dp"
+        android:drawableLeft="@drawable/ic_grade_black_24dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_background"
+        android:text="Scores" />
+
+    <Button
+        android:id="@+id/btnC"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:textAllCaps="false"
+        android:paddingStart="10dp"
+        android:paddingEnd="40dp"
+        android:textSize="20dp"
+        android:drawableLeft="@drawable/ic_grade_black_24dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_background"
+        android:text="Scores" />
+
+    <Button
+        android:id="@+id/btnD"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:textAllCaps="false"
+        android:paddingStart="10dp"
+        android:paddingEnd="40dp"
+        android:textSize="20dp"
+        android:drawableLeft="@drawable/ic_grade_black_24dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_background"
+        android:text="Scores" />
+
+
+
+</LinearLayout>
