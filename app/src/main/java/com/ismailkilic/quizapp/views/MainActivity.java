@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.ismailkilic.quizapp.R;
+import com.ismailkilic.quizapp.StaticDatas;
+
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
