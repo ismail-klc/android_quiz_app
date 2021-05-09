@@ -96,7 +96,7 @@
         android:paddingStart="10dp"
         android:paddingEnd="40dp"
         android:textSize="20dp"
-        android:drawableLeft="@drawable/ic_btna"
+        android:drawableLeft="@drawable/ic_letter_a"
         android:layout_height="50dp"
         android:background="@drawable/button_background"
         android:text="Button A" />
@@ -111,7 +111,7 @@
         android:paddingStart="10dp"
         android:paddingEnd="40dp"
         android:textSize="20dp"
-        android:drawableLeft="@drawable/ic_btnb"
+        android:drawableLeft="@drawable/ic_letter_b"
         android:layout_height="50dp"
         android:background="@drawable/button_background"
         android:text="Button B" />
@@ -126,7 +126,7 @@
         android:paddingStart="10dp"
         android:paddingEnd="40dp"
         android:textSize="20dp"
-        android:drawableLeft="@drawable/ic_btnc"
+        android:drawableLeft="@drawable/ic_letter_c"
         android:layout_height="50dp"
         android:background="@drawable/button_background"
         android:text="Button C" />
@@ -141,7 +141,7 @@
         android:paddingStart="10dp"
         android:paddingEnd="40dp"
         android:textSize="20dp"
-        android:drawableLeft="@drawable/ic_btnd"
+        android:drawableLeft="@drawable/ic_letter_d"
         android:layout_height="50dp"
         android:background="@drawable/button_background"
         android:text="Button D" />

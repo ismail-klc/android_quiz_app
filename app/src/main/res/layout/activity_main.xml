@@ -56,16 +56,17 @@
         android:paddingStart="10dp"
         android:paddingEnd="40dp"
         android:textSize="20dp"
-        android:drawableLeft="@drawable/ic_grade_black_24dp"
+        android:drawableLeft="@drawable/ic_achieve"
         android:layout_height="50dp"
         android:background="@drawable/button_background"
         android:text="Scores" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_info"
         android:background="@android:color/transparent"
         android:textColor="#FFFFFF"
         android:text="About"/>

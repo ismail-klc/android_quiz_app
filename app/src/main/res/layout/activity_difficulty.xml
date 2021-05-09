@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="@drawable/background"
     android:layout_width="match_parent"
+    android:background="@drawable/background"
     android:layout_height="match_parent"
-    tools:context=".views.CategoryActivity">
+    tools:context=".views.DifficultyActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -15,82 +15,71 @@
         android:layout_marginTop="50dp"
         android:textSize="40dp"
         android:textColor="@android:color/white"
-        android:text="Select Category" />
+        android:text="Select Difficulty" />
 
     <Button
-        android:id="@+id/btnCatSports"
+        android:id="@+id/btnDiffEasy"
         android:layout_gravity="center"
+        android:onClick="handleSelectDifficulty"
         android:layout_marginTop="65dp"
-        android:onClick="handleSelectCategory"
+        android:layout_width="300dp"
+        android:textAllCaps="false"
+        android:hint="easy"
+        android:paddingStart="10dp"
+        android:paddingEnd="40dp"
+        android:textSize="20dp"
+        android:drawableLeft="@drawable/ic_easy"
+        android:layout_height="50dp"
+        android:background="@drawable/button_background"
+        android:text="Easy" />
+
+    <Button
+        android:id="@+id/btnDiffMedium"
+        android:layout_gravity="center"
+        android:onClick="handleSelectDifficulty"
+        android:layout_marginTop="15dp"
+        android:layout_width="300dp"
+        android:textAllCaps="false"
+        android:paddingStart="10dp"
+        android:paddingEnd="40dp"
+        android:hint="medium"
+        android:textSize="20dp"
+        android:drawableLeft="@drawable/ic_medium"
+        android:layout_height="50dp"
+        android:background="@drawable/button_background"
+        android:text="Medium" />
+
+    <Button
+        android:id="@+id/btnHard"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:onClick="handleSelectDifficulty"
         android:layout_width="300dp"
         android:textAllCaps="false"
         android:paddingStart="10dp"
         android:paddingEnd="40dp"
         android:textSize="20dp"
-        android:hint="21"
-        android:drawableLeft="@drawable/ic_sports"
+        android:hint="hard"
+        android:drawableLeft="@drawable/ic_hard"
         android:layout_height="50dp"
         android:background="@drawable/button_background"
-        android:text="Sports" />
+        android:text="Hard" />
+
 
     <Button
+        android:id="@+id/btnDiffMisc"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
+        android:onClick="handleSelectDifficulty"
         android:layout_width="300dp"
         android:textAllCaps="false"
-        android:onClick="handleSelectCategory"
         android:paddingStart="10dp"
         android:paddingEnd="40dp"
         android:textSize="20dp"
-        android:hint="22"
-        android:drawableLeft="@drawable/ic_geography"
-        android:layout_height="50dp"
-        android:background="@drawable/button_background"
-        android:text="Geography" />
-
-    <Button
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_width="300dp"
-        android:onClick="handleSelectCategory"
-        android:textAllCaps="false"
-        android:paddingStart="10dp"
-        android:paddingEnd="40dp"
-        android:hint="23"
-        android:textSize="20dp"
-        android:drawableLeft="@drawable/ic_history"
-        android:layout_height="50dp"
-        android:background="@drawable/button_background"
-        android:text="History" />
-
-    <Button
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_width="300dp"
-        android:textAllCaps="false"
-        android:onClick="handleSelectCategory"
-        android:paddingStart="10dp"
-        android:paddingEnd="40dp"
-        android:hint="9"
-        android:textSize="20dp"
-        android:drawableLeft="@drawable/ic_general_knowledge"
-        android:layout_height="50dp"
-        android:background="@drawable/button_background"
-        android:text="General Knowledge" />
-
-    <Button
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_width="300dp"
-        android:textAllCaps="false"
-        android:onClick="handleSelectCategory"
-        android:paddingStart="10dp"
-        android:paddingEnd="40dp"
         android:hint=""
-        android:textSize="20dp"
-        android:drawableLeft="@drawable/ic_any_category"
+        android:drawableLeft="@drawable/ic_any_diff"
         android:layout_height="50dp"
         android:background="@drawable/button_background"
-        android:text="Any Category" />
+        android:text="Any Difficulty" />
 
 </LinearLayout>

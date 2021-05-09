@@ -39,12 +39,9 @@ public class CategoryActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(CategoryActivity.this);
         progressDialog.setMax(100);
         progressDialog.setMessage("Questions loading....");
-        progressDialog.setTitle("ProgressDialog bar example");
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.show();
 
         Call<Result> call = null;
-
         if (!StaticDatas.selectedCategory.isEmpty() && !StaticDatas.selectedDifficulty.isEmpty()){
             call = restInterface.getQuestions(StaticDatas.selectedCategory, StaticDatas.selectedDifficulty);
         }
@@ -64,7 +61,6 @@ public class CategoryActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                 StaticDatas.questions = response.body().getResults();
-
 
                 Intent intent = new Intent(CategoryActivity.this, QuestionActivity.class);
                 startActivity(intent);

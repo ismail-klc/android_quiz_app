@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -38,6 +39,12 @@ public class QuestionActivity extends AppCompatActivity {
         initVariables();
         initQuestion();
         initTimer();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(runnable);
     }
 
     public void handleChooseOption(View view) {
@@ -82,7 +89,7 @@ public class QuestionActivity extends AppCompatActivity {
         Collections.shuffle(answers);
 
         txtPoint.setText(String.valueOf(StaticDatas.point));
-        txtQuestion.setText(StaticDatas.questions.get(position).getQuestion());
+        txtQuestion.setText(Html.fromHtml(StaticDatas.questions.get(position).getQuestion()));;
         btnA.setText(answers.get(0));
         btnB.setText(answers.get(1));
         btnC.setText(answers.get(2));
