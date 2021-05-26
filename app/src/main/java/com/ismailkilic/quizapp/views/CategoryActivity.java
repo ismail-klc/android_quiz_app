@@ -62,9 +62,7 @@ public class CategoryActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                 StaticDatas.questions = response.body().getResults();
 
-                Intent intent = new Intent(CategoryActivity.this, QuestionActivity.class);
-                startActivity(intent);
-                finish();
+                handleNextActivity();
             }
 
             @Override
@@ -73,7 +71,21 @@ public class CategoryActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+    private void handleNextActivity(){
+        Intent intent = null;
+        if (StaticDatas.mode == StaticDatas.Mode.NORMAL){
+            intent = new Intent(CategoryActivity.this, QuestionActivity.class);
+        }
+        else if (StaticDatas.mode == StaticDatas.Mode.MULTI){
+            intent = new Intent(CategoryActivity.this, MultiHoldActivity.class);
+        }
+        else if (StaticDatas.mode == StaticDatas.Mode.INFINITY){
+            intent = new Intent(CategoryActivity.this, QuestionActivity.class);
+        }
 
+        startActivity(intent);
+        finish();
     }
 }

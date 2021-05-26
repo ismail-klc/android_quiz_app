@@ -47,6 +47,21 @@
         android:text="Multiplayer" />
 
     <Button
+        android:id="@+id/btnInfinity"
+        android:onClick="handleInf"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_width="300dp"
+        android:textAllCaps="false"
+        android:textSize="20dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="40dp"
+        android:layout_height="50dp"
+        android:drawableLeft="@drawable/ic_infinity"
+        android:background="@drawable/button_background"
+        android:text="Infinity" />
+
+    <Button
         android:id="@+id/btnScores"
         android:onClick="handleScores"
         android:layout_gravity="center"

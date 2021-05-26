@@ -24,10 +24,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleMulti(View view) {
+        StaticDatas.mode = StaticDatas.Mode.MULTI;
+        Intent intent = new Intent(MainActivity.this, MultiActivity.class);
+        startActivity(intent);
     }
 
     public void handleStart(View view) {
+        StaticDatas.mode = StaticDatas.Mode.NORMAL;
         Intent intent = new Intent(MainActivity.this, DifficultyActivity.class);
         startActivity(intent);
+    }
+
+    public void handleInf(View view) {
     }
 }

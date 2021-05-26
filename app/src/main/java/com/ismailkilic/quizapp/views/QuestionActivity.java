@@ -30,6 +30,8 @@ public class QuestionActivity extends AppCompatActivity {
     private TextView txtQuestion, txtQuestionNo, txtPoint;
     private Button btnA, btnB, btnC, btnD;
     private ArrayList<String> answers;
+    private Intent intent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         if (buttonText.equals(answer)) {
             btn.setBackgroundResource(R.drawable.btn_background_success);
-            StaticDatas.point++;
+            handleIncrementPoint();
         } else {
             btn.setBackgroundResource(R.drawable.btn_background_wrong);
             findCorrectAnswer(answer);
@@ -70,6 +72,20 @@ public class QuestionActivity extends AppCompatActivity {
             }
         };
         handler.postDelayed(runnable,1000);
+    }
+
+    private void handleIncrementPoint() {
+        if (StaticDatas.mode == StaticDatas.Mode.MULTI){
+            if (StaticDatas.turn == StaticDatas.Turn.USER1){
+                StaticDatas.user1Point++;
+            }
+            else {
+                StaticDatas.user2Point++;
+            }
+        }
+        else {
+            StaticDatas.point++;
+        }
     }
 
     private void findCorrectAnswer(String answer) {
@@ -86,18 +102,31 @@ public class QuestionActivity extends AppCompatActivity {
 
     private void handleNextQuestion() {
         StaticDatas.currentQuestion++;
-        Intent intent;
 
         if (StaticDatas.currentQuestion - 1 < StaticDatas.numberOfQuestions) {
             intent = new Intent(QuestionActivity.this, QuestionActivity.class);
         } else {
-            intent = new Intent(QuestionActivity.this, ResultActivity.class);
-            StaticDatas.currentQuestion = 1;
+            handleFinishQuestions();
         }
 
         handler.removeCallbacks(runnable);
         startActivity(intent);
         finish();
+    }
+
+    private void handleFinishQuestions(){
+        if (StaticDatas.mode == StaticDatas.Mode.MULTI){
+            if (StaticDatas.turn == StaticDatas.Turn.USER1){
+                intent = new Intent(QuestionActivity.this, MultiHoldActivity.class);
+                StaticDatas.turn = StaticDatas.Turn.USER2;
+            }
+            else {
+                intent = new Intent(QuestionActivity.this, ResultActivity.class);
+            }
+        }
+        else if (StaticDatas.mode == StaticDatas.Mode.NORMAL){
+            intent = new Intent(QuestionActivity.this, ResultActivity.class);
+        }
     }
 
     private void initQuestion() {
@@ -107,7 +136,7 @@ public class QuestionActivity extends AppCompatActivity {
         answers.add(StaticDatas.questions.get(position).getCorrectAnswer());
         Collections.shuffle(answers);
 
-        txtPoint.setText(String.valueOf(StaticDatas.point));
+        initPoints();
         txtQuestion.setText(Html.fromHtml(StaticDatas.questions.get(position).getQuestion()));
 
         btnA.setText(Html.fromHtml(answers.get(0)));
@@ -116,6 +145,21 @@ public class QuestionActivity extends AppCompatActivity {
         btnD.setText(Html.fromHtml(answers.get(3)));
 
         txtQuestionNo.setText(StaticDatas.currentQuestion + "/" + StaticDatas.numberOfQuestions);
+    }
+
+    private void initPoints() {
+        if (StaticDatas.mode == StaticDatas.Mode.MULTI){
+            if (StaticDatas.turn == StaticDatas.Turn.USER1){
+                txtPoint.setText(String.valueOf(StaticDatas.user1Point));
+            }
+            else {
+                txtPoint.setText(String.valueOf(StaticDatas.user2Point));
+            }
+        }
+        else {
+            txtPoint.setText(String.valueOf(StaticDatas.point));
+        }
+
     }
 
     private void initTimer() {

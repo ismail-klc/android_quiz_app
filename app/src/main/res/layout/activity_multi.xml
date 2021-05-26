@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@drawable/background"
+    android:layout_height="match_parent"
+    tools:context=".views.MultiActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Enter your names"
+        android:textSize="24dp"
+        android:layout_gravity="center"
+        android:textColor="#fff"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/editUser1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginTop="20dp"
+        android:textColorHint="#ccc"
+        android:textColor="#fff"
+        android:inputType="textPersonName"
+        android:hint="User 1" />
+
+    <EditText
+        android:id="@+id/editUser2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginTop="10dp"
+        android:textColorHint="#ccc"
+        android:textColor="#fff"
+        android:inputType="textPersonName"
+        android:hint="User 2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Question Number"
+        android:textColor="#fff"
+        android:layout_marginTop="25dp"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="60dp">
+        <Button
+            android:id="@+id/btnDec"
+            android:onClick="handleDec"
+            android:layout_width="50dp"
+            android:textSize="26dp"
+            android:layout_height="match_parent"
+            android:text="-"/>
+        <TextView
+            android:id="@+id/editQuestionNumber"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:textSize="26dp"
+            android:textColor="#fff"
+            android:text="5"
+            android:inputType="number" />
+        <Button
+            android:id="@+id/btnInc"
+            android:onClick="handleInc"
+            android:layout_width="50dp"
+            android:textSize="26dp"
+            android:text="+"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnContinue"
+        android:onClick="handleContinue"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:layout_width="300dp"
+        android:textAllCaps="false"
+        android:textSize="20dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="40dp"
+        android:layout_height="50dp"
+        android:drawableLeft="@drawable/ic_play"
+        android:background="@drawable/button_background"
+        android:text="Continue" />
+
+
+
+
+</LinearLayout>
