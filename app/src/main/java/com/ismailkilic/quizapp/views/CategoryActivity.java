@@ -63,9 +63,7 @@ public class CategoryActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                 StaticData.questions = response.body().getResults();
-
                 handleNextActivity();
             }
 

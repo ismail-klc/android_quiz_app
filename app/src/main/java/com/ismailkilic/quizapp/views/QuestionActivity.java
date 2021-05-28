@@ -2,6 +2,7 @@ package com.ismailkilic.quizapp.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,12 +11,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ismailkilic.quizapp.R;
 import com.ismailkilic.quizapp.StaticData;
+import com.ismailkilic.quizapp.data.ApiClient;
+import com.ismailkilic.quizapp.data.RestInterface;
+import com.ismailkilic.quizapp.models.Result;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class QuestionActivity extends AppCompatActivity {
 
@@ -27,13 +36,15 @@ public class QuestionActivity extends AppCompatActivity {
     private Button btnA, btnB, btnC, btnD;
     private ArrayList<String> answers;
     private Intent intent;
-
+    private RestInterface restInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
         getSupportActionBar().hide();
+        StaticData.numberOfQuestions = StaticData.questions.size();
+        restInterface = ApiClient.getClient().create(RestInterface.class);
         initVariables();
         initQuestion();
         initTimer();
@@ -57,10 +68,60 @@ public class QuestionActivity extends AppCompatActivity {
         if (buttonText.equals(answer)) {
             btn.setBackgroundResource(R.drawable.btn_background_success);
             handleIncrementPoint(position);
+
+            if (StaticData.mode == StaticData.Mode.INFINITY){
+                handleInfModeNextQuestion();
+            }
         } else {
             btn.setBackgroundResource(R.drawable.btn_background_wrong);
-            findCorrectAnswer(answer);
         }
+        findCorrectAnswer(answer);
+    }
+
+    private void handleInfModeNextQuestion() {
+        StaticData.currentQuestion++;
+
+        runnable = new Runnable() {
+            public void run() {
+                System.out.println("Hello");
+            }
+        };
+        handler.postDelayed(runnable,1000);
+
+        if (StaticData.currentQuestion > StaticData.numberOfQuestions){
+            final ProgressDialog progressDialog;
+            progressDialog = new ProgressDialog(QuestionActivity.this);
+            progressDialog.setMax(100);
+            progressDialog.setMessage("New Questions loading....");
+            progressDialog.show();
+
+            Call<Result> call = null;
+            call = restInterface.getQuestions();
+
+            call.enqueue(new Callback<Result>() {
+                @Override
+                public void onResponse(Call<Result> call, Response<Result> response) {
+                    progressDialog.dismiss();
+                    StaticData.questions.addAll(response.body().getResults());
+                    StaticData.numberOfQuestions += response.body().getResults().size();
+                    intent = new Intent(QuestionActivity.this, QuestionActivity.class);
+                }
+
+                @Override
+                public void onFailure(Call<Result> call, Throwable t) {
+                    progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    intent = new Intent(QuestionActivity.this, ResultActivity.class);
+                }
+            });
+        }
+        else {
+            intent = new Intent(QuestionActivity.this, QuestionActivity.class);
+        }
+
+        handler.removeCallbacks(runnable);
+        startActivity(intent);
+        finish();
     }
 
     private void handleIncrementPoint(int position) {
@@ -108,11 +169,17 @@ public class QuestionActivity extends AppCompatActivity {
     private void handleNextQuestion() {
         StaticData.currentQuestion++;
 
-        if (StaticData.currentQuestion - 1 < StaticData.numberOfQuestions) {
-            intent = new Intent(QuestionActivity.this, QuestionActivity.class);
-        } else {
-            handleFinishQuestions();
+        if (StaticData.mode == StaticData.Mode.INFINITY){
+            intent = new Intent(QuestionActivity.this, ResultActivity.class);
         }
+        else {
+            if (StaticData.currentQuestion - 1 < StaticData.numberOfQuestions) {
+                intent = new Intent(QuestionActivity.this, QuestionActivity.class);
+            } else {
+                handleFinishQuestions();
+            }
+        }
+
 
         handler.removeCallbacks(runnable);
         startActivity(intent);
@@ -131,7 +198,7 @@ public class QuestionActivity extends AppCompatActivity {
                 StaticData.currentQuestion = 1;
             }
         }
-        else if (StaticData.mode == StaticData.Mode.NORMAL){
+        else if (StaticData.mode == StaticData.Mode.NORMAL || StaticData.mode == StaticData.Mode.INFINITY){
             intent = new Intent(QuestionActivity.this, ResultActivity.class);
             StaticData.currentQuestion = 1;
         }
@@ -152,7 +219,12 @@ public class QuestionActivity extends AppCompatActivity {
         btnC.setText(Html.fromHtml(answers.get(2)));
         btnD.setText(Html.fromHtml(answers.get(3)));
 
-        txtQuestionNo.setText(StaticData.currentQuestion + "/" + StaticData.numberOfQuestions);
+        if (StaticData.mode == StaticData.Mode.INFINITY){
+            txtQuestionNo.setText(StaticData.currentQuestion + "/");
+        }
+        else {
+            txtQuestionNo.setText(StaticData.currentQuestion + "/" + StaticData.numberOfQuestions);
+        }
     }
 
     private void initPoints() {

@@ -20,7 +20,7 @@ public class CategoryImages {
                 return generalKnowledge;
             case "Any Category":
                 return anyCategory;
-            case "Infinity":
+            case "INFINITY":
                 return infinity;
             default:
                 return "";

@@ -38,12 +38,24 @@ public class ResultActivity extends AppCompatActivity {
         getScore();
 
         if (score == null){
-            Score newScore = new Score(StaticData.selectedCategoryName,
-                    StaticData.numberOfQuestions,
-                    StaticData.point,
-                    StaticData.numberOfQuestions - StaticData.point,
-                    maxScore,
-                    CategoryImages.getImage(StaticData.selectedCategoryName));
+            Score newScore;
+             if (StaticData.mode == StaticData.Mode.INFINITY){
+                 newScore = new Score(StaticData.mode.toString(),
+                         StaticData.point + 1,
+                         StaticData.point,
+                         1,
+                         maxScore,
+                         CategoryImages.getImage(StaticData.mode.toString()));
+             }
+             else
+             {
+                 newScore = new Score(StaticData.selectedCategoryName,
+                         StaticData.numberOfQuestions,
+                         StaticData.point,
+                         StaticData.numberOfQuestions - StaticData.point,
+                         maxScore,
+                         CategoryImages.getImage(StaticData.selectedCategoryName));
+             }
             addScore(newScore);
             System.out.println("added to database");
         }
@@ -51,13 +63,23 @@ public class ResultActivity extends AppCompatActivity {
             if (score.getMaxScore() > StaticData.score){
                 maxScore = score.getMaxScore();
             }
-
-            Score updatedScore = new Score(score.getS_Id(), StaticData.selectedCategoryName,
-                    StaticData.numberOfQuestions + score.getTotalQuestions(),
-                    StaticData.point + score.getCorrectAnswer(),
-                    StaticData.numberOfQuestions - StaticData.point + score.getWrongAnswer(),
-                    maxScore,
-                    CategoryImages.getImage(StaticData.selectedCategoryName));
+            Score updatedScore;
+            if (StaticData.mode == StaticData.Mode.INFINITY){
+                updatedScore = new Score(score.getS_Id(), StaticData.mode.toString(),
+                        StaticData.point + 1 + score.getTotalQuestions(),
+                        StaticData.point + score.getCorrectAnswer(),
+                        1 + score.getWrongAnswer(),
+                        maxScore,
+                        CategoryImages.getImage(StaticData.mode.toString()));
+            }
+            else {
+                updatedScore = new Score(score.getS_Id(), StaticData.selectedCategoryName,
+                        StaticData.numberOfQuestions + score.getTotalQuestions(),
+                        StaticData.point + score.getCorrectAnswer(),
+                        StaticData.numberOfQuestions - StaticData.point + score.getWrongAnswer(),
+                        maxScore,
+                        CategoryImages.getImage(StaticData.selectedCategoryName));
+            }
             updateScore(updatedScore);
             System.out.println("updated");
         }
@@ -72,7 +94,12 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     private void getScore() {
-        score = scoreDal.getScore(StaticData.selectedCategoryName);
+        if (StaticData.mode == StaticData.Mode.INFINITY){
+            score = scoreDal.getScore(StaticData.mode.toString());
+        }
+        else {
+            score = scoreDal.getScore(StaticData.selectedCategoryName);
+        }
     }
 
     private void initFragment() {

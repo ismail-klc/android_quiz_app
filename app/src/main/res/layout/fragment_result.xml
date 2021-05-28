@@ -38,7 +38,7 @@
             android:textSize="20dp"
             android:layout_height="50dp"
             android:background="@drawable/button_background"
-            android:text="Go Main Menu" />
+            android:text="Main Menu" />
 
     </LinearLayout>
 
