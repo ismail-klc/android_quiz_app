@@ -10,16 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ismailkilic.quizapp.R;
-import com.ismailkilic.quizapp.StaticDatas;
+import com.ismailkilic.quizapp.StaticData;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class QuestionActivity extends AppCompatActivity {
 
@@ -55,8 +51,8 @@ public class QuestionActivity extends AppCompatActivity {
         Button btn = (Button) view;
         String buttonText = btn.getText().toString();
 
-        int position = StaticDatas.currentQuestion - 1;
-        String answer = StaticDatas.questions.get(position).getCorrectAnswer();
+        int position = StaticData.currentQuestion - 1;
+        String answer = StaticData.questions.get(position).getCorrectAnswer();
 
         if (buttonText.equals(answer)) {
             btn.setBackgroundResource(R.drawable.btn_background_success);
@@ -75,16 +71,16 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     private void handleIncrementPoint() {
-        if (StaticDatas.mode == StaticDatas.Mode.MULTI){
-            if (StaticDatas.turn == StaticDatas.Turn.USER1){
-                StaticDatas.user1Point++;
+        if (StaticData.mode == StaticData.Mode.MULTI){
+            if (StaticData.turn == StaticData.Turn.USER1){
+                StaticData.user1Point++;
             }
             else {
-                StaticDatas.user2Point++;
+                StaticData.user2Point++;
             }
         }
         else {
-            StaticDatas.point++;
+            StaticData.point++;
         }
     }
 
@@ -101,9 +97,9 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     private void handleNextQuestion() {
-        StaticDatas.currentQuestion++;
+        StaticData.currentQuestion++;
 
-        if (StaticDatas.currentQuestion - 1 < StaticDatas.numberOfQuestions) {
+        if (StaticData.currentQuestion - 1 < StaticData.numberOfQuestions) {
             intent = new Intent(QuestionActivity.this, QuestionActivity.class);
         } else {
             handleFinishQuestions();
@@ -115,49 +111,52 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     private void handleFinishQuestions(){
-        if (StaticDatas.mode == StaticDatas.Mode.MULTI){
-            if (StaticDatas.turn == StaticDatas.Turn.USER1){
+        if (StaticData.mode == StaticData.Mode.MULTI){
+            if (StaticData.turn == StaticData.Turn.USER1){
                 intent = new Intent(QuestionActivity.this, MultiHoldActivity.class);
-                StaticDatas.turn = StaticDatas.Turn.USER2;
+                StaticData.turn = StaticData.Turn.USER2;
+                StaticData.currentQuestion = 1;
             }
             else {
                 intent = new Intent(QuestionActivity.this, ResultActivity.class);
+                StaticData.currentQuestion = 1;
             }
         }
-        else if (StaticDatas.mode == StaticDatas.Mode.NORMAL){
+        else if (StaticData.mode == StaticData.Mode.NORMAL){
             intent = new Intent(QuestionActivity.this, ResultActivity.class);
+            StaticData.currentQuestion = 1;
         }
     }
 
     private void initQuestion() {
-        int position = StaticDatas.currentQuestion - 1;
+        int position = StaticData.currentQuestion - 1;
         answers.clear();
-        answers = (ArrayList<String>) StaticDatas.questions.get(position).getIncorrectAnswers().clone();
-        answers.add(StaticDatas.questions.get(position).getCorrectAnswer());
+        answers = (ArrayList<String>) StaticData.questions.get(position).getIncorrectAnswers().clone();
+        answers.add(StaticData.questions.get(position).getCorrectAnswer());
         Collections.shuffle(answers);
 
         initPoints();
-        txtQuestion.setText(Html.fromHtml(StaticDatas.questions.get(position).getQuestion()));
+        txtQuestion.setText(Html.fromHtml(StaticData.questions.get(position).getQuestion()));
 
         btnA.setText(Html.fromHtml(answers.get(0)));
         btnB.setText(Html.fromHtml(answers.get(1)));
         btnC.setText(Html.fromHtml(answers.get(2)));
         btnD.setText(Html.fromHtml(answers.get(3)));
 
-        txtQuestionNo.setText(StaticDatas.currentQuestion + "/" + StaticDatas.numberOfQuestions);
+        txtQuestionNo.setText(StaticData.currentQuestion + "/" + StaticData.numberOfQuestions);
     }
 
     private void initPoints() {
-        if (StaticDatas.mode == StaticDatas.Mode.MULTI){
-            if (StaticDatas.turn == StaticDatas.Turn.USER1){
-                txtPoint.setText(String.valueOf(StaticDatas.user1Point));
+        if (StaticData.mode == StaticData.Mode.MULTI){
+            if (StaticData.turn == StaticData.Turn.USER1){
+                txtPoint.setText(String.valueOf(StaticData.user1Point));
             }
             else {
-                txtPoint.setText(String.valueOf(StaticDatas.user2Point));
+                txtPoint.setText(String.valueOf(StaticData.user2Point));
             }
         }
         else {
-            txtPoint.setText(String.valueOf(StaticDatas.point));
+            txtPoint.setText(String.valueOf(StaticData.point));
         }
 
     }

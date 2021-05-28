@@ -9,10 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ismailkilic.quizapp.R;
-import com.ismailkilic.quizapp.StaticDatas;
+import com.ismailkilic.quizapp.StaticData;
 
 public class ResultMultiFragment extends Fragment {
     TextView username1, username2, user1Point,user2Point, txtResultMulti;
@@ -38,19 +37,19 @@ public class ResultMultiFragment extends Fragment {
     }
 
     private void initResult() {
-        username1.setText(StaticDatas.user1);
-        username2.setText(StaticDatas.user2);
-        user1Point.setText(String.valueOf(StaticDatas.user1Point));
-        user2Point.setText(String.valueOf(StaticDatas.user2Point));
+        username1.setText(StaticData.user1);
+        username2.setText(StaticData.user2);
+        user1Point.setText(String.valueOf(StaticData.user1Point));
+        user2Point.setText(String.valueOf(StaticData.user2Point));
 
-        if (StaticDatas.user2Point == StaticDatas.user1Point){
+        if (StaticData.user2Point == StaticData.user1Point){
             txtResultMulti.setText("Draw");
         }
-        else if (StaticDatas.user2Point > StaticDatas.user1Point){
-            txtResultMulti.setText(StaticDatas.user2 + " Won");
+        else if (StaticData.user2Point > StaticData.user1Point){
+            txtResultMulti.setText(StaticData.user2 + " Won");
         }
         else {
-            txtResultMulti.setText(StaticDatas.user1 + " Won");
+            txtResultMulti.setText(StaticData.user1 + " Won");
         }
     }
 

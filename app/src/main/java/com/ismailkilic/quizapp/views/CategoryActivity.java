@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.ismailkilic.quizapp.R;
-import com.ismailkilic.quizapp.StaticDatas;
+import com.ismailkilic.quizapp.StaticData;
 import com.ismailkilic.quizapp.data.ApiClient;
 import com.ismailkilic.quizapp.data.RestInterface;
 import com.ismailkilic.quizapp.models.Result;
@@ -33,7 +33,8 @@ public class CategoryActivity extends AppCompatActivity {
     public void handleSelectCategory(View view) {
         Button button = (Button) view;
         String value = (String) button.getHint();
-        StaticDatas.selectedCategory = value;
+        StaticData.selectedCategory = value;
+        StaticData.selectedCategoryName = (String) button.getText();
 
         final ProgressDialog progressDialog;
         progressDialog = new ProgressDialog(CategoryActivity.this);
@@ -42,14 +43,14 @@ public class CategoryActivity extends AppCompatActivity {
         progressDialog.show();
 
         Call<Result> call = null;
-        if (!StaticDatas.selectedCategory.isEmpty() && !StaticDatas.selectedDifficulty.isEmpty()){
-            call = restInterface.getQuestions(StaticDatas.selectedCategory, StaticDatas.selectedDifficulty);
+        if (!StaticData.selectedCategory.isEmpty() && !StaticData.selectedDifficulty.isEmpty()){
+            call = restInterface.getQuestions(StaticData.selectedCategory, StaticData.selectedDifficulty);
         }
-        else if(!StaticDatas.selectedCategory.isEmpty()){
-            call = restInterface.getQuestionsByCategory(StaticDatas.selectedCategory);
+        else if(!StaticData.selectedCategory.isEmpty()){
+            call = restInterface.getQuestionsByCategory(StaticData.selectedCategory);
         }
-        else if(!StaticDatas.selectedDifficulty.isEmpty()){
-            call = restInterface.getQuestionsByDifficulty(StaticDatas.selectedDifficulty);
+        else if(!StaticData.selectedDifficulty.isEmpty()){
+            call = restInterface.getQuestionsByDifficulty(StaticData.selectedDifficulty);
         }
         else {
             call = restInterface.getQuestions();
@@ -60,7 +61,7 @@ public class CategoryActivity extends AppCompatActivity {
             public void onResponse(Call<Result> call, Response<Result> response) {
                 progressDialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                StaticDatas.questions = response.body().getResults();
+                StaticData.questions = response.body().getResults();
 
                 handleNextActivity();
             }
@@ -75,13 +76,13 @@ public class CategoryActivity extends AppCompatActivity {
 
     private void handleNextActivity(){
         Intent intent = null;
-        if (StaticDatas.mode == StaticDatas.Mode.NORMAL){
+        if (StaticData.mode == StaticData.Mode.NORMAL){
             intent = new Intent(CategoryActivity.this, QuestionActivity.class);
         }
-        else if (StaticDatas.mode == StaticDatas.Mode.MULTI){
+        else if (StaticData.mode == StaticData.Mode.MULTI){
             intent = new Intent(CategoryActivity.this, MultiHoldActivity.class);
         }
-        else if (StaticDatas.mode == StaticDatas.Mode.INFINITY){
+        else if (StaticData.mode == StaticData.Mode.INFINITY){
             intent = new Intent(CategoryActivity.this, QuestionActivity.class);
         }
 

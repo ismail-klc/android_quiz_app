@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/ic_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.MultiHoldActivity"></activity>
+        <activity android:name=".views.ScoresActivity"></activity>
+        <activity android:name=".views.MultiHoldActivity" />
         <activity android:name=".views.MultiActivity" />
         <activity android:name=".views.CategoryActivity" />
         <activity android:name=".views.ResultActivity" />

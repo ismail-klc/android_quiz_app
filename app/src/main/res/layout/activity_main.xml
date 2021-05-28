@@ -11,7 +11,7 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="145dp"
         app:srcCompat="@drawable/quiz2" />
@@ -20,7 +20,7 @@
         android:id="@+id/btnStart"
         android:onClick="handleStart"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         android:layout_width="300dp"
         android:textAllCaps="false"
         android:textSize="20dp"
@@ -79,7 +79,7 @@
     <Button
         android:layout_width="100dp"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_info"
         android:background="@android:color/transparent"

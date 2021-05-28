@@ -7,9 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.ismailkilic.quizapp.R;
-import com.ismailkilic.quizapp.StaticDatas;
-
-import java.util.Collections;
+import com.ismailkilic.quizapp.StaticData;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,16 +19,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleScores(View view) {
+        Intent intent = new Intent(MainActivity.this, ScoresActivity.class);
+        startActivity(intent);
     }
 
     public void handleMulti(View view) {
-        StaticDatas.mode = StaticDatas.Mode.MULTI;
+        StaticData.mode = StaticData.Mode.MULTI;
         Intent intent = new Intent(MainActivity.this, MultiActivity.class);
         startActivity(intent);
     }
 
     public void handleStart(View view) {
-        StaticDatas.mode = StaticDatas.Mode.NORMAL;
+        StaticData.mode = StaticData.Mode.NORMAL;
         Intent intent = new Intent(MainActivity.this, DifficultyActivity.class);
         startActivity(intent);
     }

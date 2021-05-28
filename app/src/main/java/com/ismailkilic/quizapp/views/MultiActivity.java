@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ismailkilic.quizapp.R;
-import com.ismailkilic.quizapp.StaticDatas;
+import com.ismailkilic.quizapp.StaticData;
 
 public class MultiActivity extends AppCompatActivity {
 
@@ -32,10 +32,10 @@ public class MultiActivity extends AppCompatActivity {
     }
 
     public void handleContinue(View view) {
-        StaticDatas.turn = StaticDatas.Turn.USER1;
-        StaticDatas.numberOfQuestions = Integer.parseInt(questionNumber.getText().toString());
-        StaticDatas.user1 = user1.getText().toString();
-        StaticDatas.user2 = user2.getText().toString();
+        StaticData.turn = StaticData.Turn.USER1;
+        StaticData.numberOfQuestions = Integer.parseInt(questionNumber.getText().toString());
+        StaticData.user1 = user1.getText().toString();
+        StaticData.user2 = user2.getText().toString();
 
         Intent intent = new Intent(MultiActivity.this, DifficultyActivity.class);
         startActivity(intent);

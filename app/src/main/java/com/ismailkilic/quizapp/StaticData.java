@@ -4,7 +4,7 @@ import com.ismailkilic.quizapp.models.Question;
 
 import java.util.ArrayList;
 
-public class StaticDatas {
+public class StaticData {
     public enum Mode {
         NORMAL,
         MULTI,
@@ -21,10 +21,12 @@ public class StaticDatas {
     // common
     public static Mode mode = Mode.NORMAL;
     public static int point = 0;
+    public static int score = 0;
     public static int currentQuestion = 1;
     public static int numberOfQuestions = 10;
     public static String selectedDifficulty = "";
     public static String selectedCategory= "";
+    public static String selectedCategoryName= "";
 
     // multiplayer
     public static Turn turn = Turn.USER1;
@@ -39,6 +41,7 @@ public class StaticDatas {
         user2 = "";
         user1Point = 0;
         user2Point = 0;
+        score = 0;
 
         mode = Mode.NORMAL;
         point = 0;

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ismailkilic.quizapp.R;
-import com.ismailkilic.quizapp.StaticDatas;
+import com.ismailkilic.quizapp.StaticData;
 
 public class ResultFragment extends Fragment {
     TextView txtResult;
@@ -33,6 +33,6 @@ public class ResultFragment extends Fragment {
     }
 
     private void initResult() {
-        txtResult.setText("Point: " + String.valueOf(StaticDatas.point));
+        txtResult.setText("Point: " + String.valueOf(StaticData.point));
     }
 }

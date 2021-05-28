@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ismailkilic.quizapp.R;
-import com.ismailkilic.quizapp.StaticDatas;
+import com.ismailkilic.quizapp.StaticData;
 
 public class MultiHoldActivity extends AppCompatActivity {
 
@@ -24,11 +24,11 @@ public class MultiHoldActivity extends AppCompatActivity {
     private void initVariables() {
         username = findViewById(R.id.hold_userName);
 
-        if (StaticDatas.turn == StaticDatas.Turn.USER1){
-            username.setText(StaticDatas.user1);
+        if (StaticData.turn == StaticData.Turn.USER1){
+            username.setText(StaticData.user1);
         }
         else {
-            username.setText(StaticDatas.user2);
+            username.setText(StaticData.user2);
         }
     }
 
