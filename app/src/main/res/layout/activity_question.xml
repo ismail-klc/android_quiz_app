@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:gravity="center_vertical|center"
+        android:gravity="center_vertical"
         android:layout_height="100dp"
         android:orientation="horizontal">
 
@@ -39,13 +39,37 @@
                 />
         </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:indeterminateOnly="false"
-            android:progressDrawable="@drawable/circle_progress"
-            android:progress="100"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
+            <ProgressBar
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/progressBar"
+                android:indeterminateOnly="false"
+                android:progressDrawable="@drawable/circle_progress"
+                android:progress="120" />
+            <TextView
+                android:id="@+id/progressCount"
+                android:layout_width="wrap_content"
+                android:textColor="#fff"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                app:layout_constraintStart_toStartOf="@+id/progressBar"
+                app:layout_constraintTop_toTopOf="@+id/progressBar"
+                tools:text="20" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
         <LinearLayout
             android:layout_width="0dp"
@@ -145,7 +169,4 @@
         android:layout_height="50dp"
         android:background="@drawable/button_background"
         android:text="Button D" />
-
-
-
 </LinearLayout>

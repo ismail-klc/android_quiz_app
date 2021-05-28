@@ -14,6 +14,9 @@ public interface RestInterface {
     @GET("api.php?amount=10&type=multiple")
     Call<Result> getQuestions(@Query("category") String category, @Query("difficulty") String difficulty);
 
+    @GET("api.php?type=multiple")
+    Call<Result> getQuestions(@Query("category") String category, @Query("difficulty") String difficulty, @Query("amount") int amount);
+
     @GET("api.php?amount=10&type=multiple")
     Call<Result> getQuestionsByCategory(@Query("category") String category);
 

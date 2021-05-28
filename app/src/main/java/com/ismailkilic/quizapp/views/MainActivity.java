@@ -18,6 +18,12 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        StaticData.clearValues();
+    }
+
     public void handleScores(View view) {
         Intent intent = new Intent(MainActivity.this, ScoresActivity.class);
         startActivity(intent);

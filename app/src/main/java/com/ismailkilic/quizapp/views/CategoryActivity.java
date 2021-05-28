@@ -43,7 +43,10 @@ public class CategoryActivity extends AppCompatActivity {
         progressDialog.show();
 
         Call<Result> call = null;
-        if (!StaticData.selectedCategory.isEmpty() && !StaticData.selectedDifficulty.isEmpty()){
+        if (StaticData.mode == StaticData.Mode.MULTI){
+            call = restInterface.getQuestions(StaticData.selectedCategory, StaticData.selectedDifficulty, StaticData.numberOfQuestions);
+        }
+        else if (!StaticData.selectedCategory.isEmpty() && !StaticData.selectedDifficulty.isEmpty()){
             call = restInterface.getQuestions(StaticData.selectedCategory, StaticData.selectedDifficulty);
         }
         else if(!StaticData.selectedCategory.isEmpty()){

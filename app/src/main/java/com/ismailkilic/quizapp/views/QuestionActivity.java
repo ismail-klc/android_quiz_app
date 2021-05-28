@@ -23,7 +23,7 @@ public class QuestionActivity extends AppCompatActivity {
     private Handler handler;
     private Runnable runnable;
     private ProgressBar progressBar;
-    private TextView txtQuestion, txtQuestionNo, txtPoint;
+    private TextView txtQuestion, txtQuestionNo, txtPoint, progressCount;
     private Button btnA, btnB, btnC, btnD;
     private ArrayList<String> answers;
     private Intent intent;
@@ -52,25 +52,18 @@ public class QuestionActivity extends AppCompatActivity {
         String buttonText = btn.getText().toString();
 
         int position = StaticData.currentQuestion - 1;
-        String answer = StaticData.questions.get(position).getCorrectAnswer();
+        String answer = Html.fromHtml(StaticData.questions.get(position).getCorrectAnswer()).toString();
 
         if (buttonText.equals(answer)) {
             btn.setBackgroundResource(R.drawable.btn_background_success);
-            handleIncrementPoint();
+            handleIncrementPoint(position);
         } else {
             btn.setBackgroundResource(R.drawable.btn_background_wrong);
             findCorrectAnswer(answer);
         }
-
-        runnable = new Runnable() {
-            public void run() {
-                handleNextQuestion();
-            }
-        };
-        handler.postDelayed(runnable,1000);
     }
 
-    private void handleIncrementPoint() {
+    private void handleIncrementPoint(int position) {
         if (StaticData.mode == StaticData.Mode.MULTI){
             if (StaticData.turn == StaticData.Turn.USER1){
                 StaticData.user1Point++;
@@ -80,6 +73,15 @@ public class QuestionActivity extends AppCompatActivity {
             }
         }
         else {
+            if (StaticData.questions.get(position).getDifficulty().equals("easy")){
+                StaticData.score += 10;
+            }
+            else if (StaticData.questions.get(position).getDifficulty().equals("medium")){
+                StaticData.score += 20;
+            }
+            else if (StaticData.questions.get(position).getDifficulty().equals("hard")){
+                StaticData.score += 30;
+            }
             StaticData.point++;
         }
     }
@@ -94,6 +96,13 @@ public class QuestionActivity extends AppCompatActivity {
         } else if (btnD.getText().toString().equals(answer)) {
             btnD.setBackgroundResource(R.drawable.btn_background_success);
         }
+
+        runnable = new Runnable() {
+            public void run() {
+                handleNextQuestion();
+            }
+        };
+        handler.postDelayed(runnable,1000);
     }
 
     private void handleNextQuestion() {
@@ -156,7 +165,7 @@ public class QuestionActivity extends AppCompatActivity {
             }
         }
         else {
-            txtPoint.setText(String.valueOf(StaticData.point));
+            txtPoint.setText(String.valueOf(StaticData.score));
         }
 
     }
@@ -168,9 +177,15 @@ public class QuestionActivity extends AppCompatActivity {
             public void run() {
                 if (timer == 0) {
                     handler.removeCallbacks(runnable);
-                    handleNextQuestion();
+                    int position = StaticData.currentQuestion - 1;
+                    String answer = Html.fromHtml(StaticData.questions.get(position).getCorrectAnswer()).toString();
+                    findCorrectAnswer(answer);
                 }
-                progressBar.setProgress(progressBar.getProgress() - 5);
+                if (timer != 20){
+                    progressBar.setProgress(progressBar.getProgress() - 5);
+                }
+
+                progressCount.setText(String.valueOf(timer));
                 timer--;
                 handler.postDelayed(runnable, 1000);
             }
@@ -183,6 +198,7 @@ public class QuestionActivity extends AppCompatActivity {
         txtQuestion = findViewById(R.id.txtQuestion);
         txtQuestionNo = findViewById(R.id.txtQuestionNo);
         txtPoint = findViewById(R.id.txtPoint);
+        progressCount = findViewById(R.id.progressCount);
         btnA = findViewById(R.id.btnA);
         btnB = findViewById(R.id.btnB);
         btnC = findViewById(R.id.btnC);

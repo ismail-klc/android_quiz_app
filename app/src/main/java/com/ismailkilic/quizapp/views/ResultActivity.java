@@ -34,7 +34,7 @@ public class ResultActivity extends AppCompatActivity {
     private void addScoresToDatabase() {
         database = RepoDatabase.getInstance(getApplicationContext());
         scoreDal = database.getScoreDal();
-        int maxScore = StaticData.point;
+        int maxScore = StaticData.score;
         getScore();
 
         if (score == null){
@@ -48,11 +48,8 @@ public class ResultActivity extends AppCompatActivity {
             System.out.println("added to database");
         }
         else {
-            if (score.getMaxScore() > StaticData.point){
+            if (score.getMaxScore() > StaticData.score){
                 maxScore = score.getMaxScore();
-            }
-            else {
-                maxScore = StaticData.point;
             }
 
             Score updatedScore = new Score(score.getS_Id(), StaticData.selectedCategoryName,

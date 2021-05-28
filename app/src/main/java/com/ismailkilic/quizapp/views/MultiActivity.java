@@ -15,7 +15,7 @@ public class MultiActivity extends AppCompatActivity {
 
     TextView questionNumber;
     EditText user1, user2;
-    int minQuestion = 3, maxQuestion = 15;
+    int minQuestion = 3, maxQuestion = 10;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,6 @@ public class MultiActivity extends AppCompatActivity {
         questionNumber = findViewById(R.id.editQuestionNumber);
         user1 = findViewById(R.id.editUser1);
         user2 = findViewById(R.id.editUser2);
-
     }
 
     public void handleContinue(View view) {

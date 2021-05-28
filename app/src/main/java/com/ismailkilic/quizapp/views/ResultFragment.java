@@ -33,6 +33,6 @@ public class ResultFragment extends Fragment {
     }
 
     private void initResult() {
-        txtResult.setText("Point: " + String.valueOf(StaticData.point));
+        txtResult.setText("Point: " + String.valueOf(StaticData.score));
     }
 }
