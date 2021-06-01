@@ -2,6 +2,7 @@ package com.ismailkilic.quizapp.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -78,5 +79,17 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void handleAbout(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("About Quiz App");
+        builder.setMessage("There are three modes in the app. \n Normal: Pick category and difficulty and solve 10 " +
+                "questions. \n 1 to 1: Play with your friend. \n" +
+                "Infinity: Solve questions until your answer is wrong.\n" +
+                "See your progress in scoreboard\n\n" +
+                "The questions are taken from https://opentdb.com/");
+        builder.setPositiveButton("Okay", null);
+        builder.show();
     }
 }

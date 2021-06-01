@@ -19,11 +19,22 @@
         android:layout_height="wrap_content"
         android:text="Scoreboard"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
+        <TextView
+            android:id="@+id/text_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="#fff"
+            android:paddingVertical="40dp"
+            android:paddingHorizontal="25dp"
+            android:background="#2B2B2B"
+            android:text="@string/emptyView"
+            android:gravity="center"
+            />
 
 </LinearLayout>
